@@ -2,8 +2,8 @@
 const fs = require('fs');
 const jsforce = require('jsforce');
 const moment = require('moment');
-const config = JSON.parse(fs.readFileSync('config.json').toString());
 const https = require('https');
+const { config } = require('./config');
 
 const writeDelay = 20_000;
 const endDelay = 40_000;

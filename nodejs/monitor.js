@@ -2,7 +2,7 @@
 const jsforce = require('jsforce');
 const fs = require('fs');
 const moment = require('moment');
-const config = JSON.parse(fs.readFileSync('./config.json'));
+const { config } = require('./config');
 
 class OrgMonitor {
 	constructor(url, username, password) {

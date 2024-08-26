@@ -1,8 +1,8 @@
 /* This script attempts to create a large number of concurrent requests */
 var fs = require('fs');
 var jsforce = require('jsforce');
-var config = JSON.parse(fs.readFileSync('config.json').toString());
 var https = require('https');
+const { config } = require('./config');
 
 var writeDelay = 20000;
 var endDelay = 40000;

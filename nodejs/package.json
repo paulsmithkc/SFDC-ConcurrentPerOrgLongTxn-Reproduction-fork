@@ -1,14 +1,17 @@
 {
-  "name": "long-request",
+  "name": "SFDC-ConcurrentPerOrgLongTxn-Reproduction",
+	"private": true,
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
   "scripts": {
+		"monitor": "node -r dotenv/config monitor.js",
+		"stress": "node -r dotenv/config stress.js",
+		"monitor-stress": "npx concurrently \"npm run monitor\" \"npm run stress\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^16.4.5",
     "jsforce": "^1.7.1",
     "moment": "^2.17.0"
   }
