@@ -22,13 +22,13 @@ class OrgMonitor {
 		var end;
 		this.log(localCycle, 'Cycle started');
 		try {
-			conn.login(this.username, this.password, (err, res) => {
+			conn.login(this.username, this.password, (err) => {
 				if (err) {
 					end = +new Date();
 					this.log(localCycle, 'Error logging in: ' + err.message + ' trace: ' + JSON.stringify(err.stack) + ' took ' + (end - start) + 'ms');
 					return console.error(err);
 				}
-				conn.apex.get("/services/apexrest/LongTxn", (err, res) => {
+				conn.apex.get("/services/apexrest/LongTxn", (err) => {
 					end = +new Date();
 					if (err) {
 						this.log(localCycle, 'Error performing apex: ' + err.message + ' trace: ' + JSON.stringify(err.stack) + ' took ' + (end - start) + 'ms');

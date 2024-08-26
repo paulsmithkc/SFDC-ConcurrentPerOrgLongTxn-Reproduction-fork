@@ -66,7 +66,7 @@ const instances = [];
 const conn = new jsforce.Connection({
 	loginUrl : config.url
 });
-conn.login(config.username, config.password, function(err, userInfo) {
+conn.login(config.username, config.password, function(err) {
 	if (err) {
 		return console.error(err);
 	}
