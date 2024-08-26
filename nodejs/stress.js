@@ -36,11 +36,11 @@ class Instance {
 		});
 		this.req.on('response', (response) => {
 			response.on('data', function (chunk) {
-				this.log('response: ' + chunk);
+				this.log({ response: chunk });
 			});
 		})
 		this.req.on('error', (error) => {
-			this.log('error', error)
+			this.log({ error })
 		})
 		this.req.flushHeaders();
 	}
@@ -60,8 +60,8 @@ class Instance {
 			}
 		})
 	}
-	log(data) {
-		console.log(`[${moment().format()}] [${this.instanceNumber}]`, JSON.stringify(data));
+	log(...data) {
+		console.log(`[${moment().format()}] [${this.instanceNumber}]`, ...data);
 	}
 }
 
