@@ -18,7 +18,8 @@ class OrgMonitor {
 		var conn = new jsforce.Connection({
 			loginUrl: this.url
 		});
-		var start = +new Date(), end;
+		var start = +new Date();
+		var end;
 		this.log(localCycle, 'Cycle started');
 		try {
 			conn.login(this.username, this.password, (err, res) => {
