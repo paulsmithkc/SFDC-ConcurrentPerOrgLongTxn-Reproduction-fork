@@ -1,8 +1,8 @@
 /* This script monitors Salesforces' webservice availability */
-var jsforce = require('jsforce');
-var fs = require('fs');
-var moment = require('moment');
-var config = JSON.parse(fs.readFileSync('./config.json'));
+const jsforce = require('jsforce');
+const fs = require('fs');
+const moment = require('moment');
+const config = JSON.parse(fs.readFileSync('./config.json'));
 
 class OrgMonitor {
 	constructor(url, username, password) {
@@ -13,9 +13,9 @@ class OrgMonitor {
 		setInterval(this.check.bind(this), 2000);
 	}
 	check() {
-		var localCycle = this.cycle;
+		const localCycle = this.cycle;
 		this.cycle++;
-		var conn = new jsforce.Connection({
+		const conn = new jsforce.Connection({
 			loginUrl: this.url
 		});
 		var start = +new Date();
@@ -48,4 +48,4 @@ class OrgMonitor {
 	}
 }
 
-var monitor = new OrgMonitor(config.url, config.username, config.password)
+const monitor = new OrgMonitor(config.url, config.username, config.password)
