@@ -44,7 +44,7 @@ class OrgMonitor {
 		}
 	}
 	log(currentCycle, data) {
-		console.log('[' + moment().format() + ']', currentCycle, JSON.stringify(data));
+		console.log(`[${moment().format()}] [${currentCycle}]`, JSON.stringify(data));
 	}
 }
 

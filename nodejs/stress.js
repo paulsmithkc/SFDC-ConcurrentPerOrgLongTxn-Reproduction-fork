@@ -1,6 +1,7 @@
 /* This script attempts to create a large number of concurrent requests */
 const fs = require('fs');
 const jsforce = require('jsforce');
+const moment = require('moment');
 const config = JSON.parse(fs.readFileSync('config.json').toString());
 const https = require('https');
 
@@ -8,7 +9,8 @@ const writeDelay = 20_000;
 const endDelay = 40_000;
 
 class Instance {
-	constructor(accessToken, url) {
+	constructor(instanceNumber, accessToken, url) {
+		this.instanceNumber = instanceNumber;
 		this.accessToken = accessToken;
 		this.url = url;
 
@@ -35,16 +37,16 @@ class Instance {
 		});
 		this.req.on('response', (response) => {
 			response.on('data', function (chunk) {
-				console.log('response: ' + chunk);
+				this.log('response: ' + chunk);
 			});
 		})
 		this.req.on('error', (error) => {
-			console.log('error', error)
+			this.log('error', error)
 		})
 		this.req.flushHeaders();
 	}
 	write(data) {
-		console.log('writing data', data);
+		this.log('writing data', data);
 		this.req.write(data, 'UTF-8', (err) => {
 			if (err) {
 				return console.error(err);
@@ -52,12 +54,15 @@ class Instance {
 		})
 	}
 	end() {
-		console.log('ending request');
+		this.log('ending request');
 		this.req.end((err) => {
 			if (err) {
 				return console.error(err);
 			}
 		})
+	}
+	log(data) {
+		console.log(`[${moment().format()}] [${this.instanceNumber}]`, JSON.stringify(data));
 	}
 }
 
@@ -71,6 +76,6 @@ conn.login(config.username, config.password, function(err) {
 		return console.error(err);
 	}
 	for (let i = 0; i < config.numberOfInstances; i++) {
-		instances.push(new Instance(conn.accessToken, conn.instanceUrl));
+		instances.push(new Instance(i, conn.accessToken, conn.instanceUrl));
 	}
 });
