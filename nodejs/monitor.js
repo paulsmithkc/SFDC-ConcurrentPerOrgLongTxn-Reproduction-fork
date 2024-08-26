@@ -1,6 +1,5 @@
 /* This script monitors Salesforces' webservice availability */
 const jsforce = require('jsforce');
-const fs = require('fs');
 const moment = require('moment');
 const { config } = require('./config');
 

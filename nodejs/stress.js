@@ -1,5 +1,4 @@
 /* This script attempts to create a large number of concurrent requests */
-const fs = require('fs');
 const jsforce = require('jsforce');
 const moment = require('moment');
 const https = require('https');

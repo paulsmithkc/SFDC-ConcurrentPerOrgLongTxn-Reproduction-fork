@@ -1,12 +1,11 @@
 /* This script attempts to create a large number of concurrent requests through VF remorting - we have not seen this break... */
-var fs = require('fs');
-var jsforce = require('jsforce');
-var https = require('https');
+const jsforce = require('jsforce');
+const https = require('https');
 const { config } = require('./config');
 
-var writeDelay1 = 0;
-var writeDelay2 = 30000;
-var endDelay = 50000;
+const writeDelay1 = 0;
+const writeDelay2 = 30000;
+const endDelay = 50000;
 
 // Fill these variables based on a VF remorting request to the LongTxn controller - ie. captured request to /apexremote from the page included in the /apex folder
 var csrf = '';

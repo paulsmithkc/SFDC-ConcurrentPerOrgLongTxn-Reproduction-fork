@@ -1,11 +1,10 @@
 /* This script attempts to create a large number of concurrent requests */
-var fs = require('fs');
-var jsforce = require('jsforce');
-var https = require('https');
+const jsforce = require('jsforce');
+const https = require('https');
 const { config } = require('./config');
 
-var writeDelay = 20000;
-var endDelay = 40000;
+const writeDelay = 20000;
+const endDelay = 40000;
 
 class Instance {
 	constructor(accessToken, url) {
