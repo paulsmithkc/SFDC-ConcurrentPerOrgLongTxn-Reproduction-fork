@@ -35,7 +35,7 @@ class Instance {
 			console.error('Timed out');
 		});
 		this.req.on('response', (response) => {
-			response.on('data', function (chunk) {
+			response.on('data', (chunk) => {
 				this.log({ response: chunk });
 			});
 		})
@@ -70,7 +70,7 @@ const instances = [];
 const conn = new jsforce.Connection({
 	loginUrl : config.url
 });
-conn.login(config.username, config.password, function(err) {
+conn.login(config.username, config.password, (err) => {
 	if (err) {
 		return console.error(err);
 	}
